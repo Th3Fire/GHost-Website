@@ -1,0 +1,103 @@
+*{
+    margin:0;
+    padding:0;
+}
+body {
+    font:14px/1.3 Arial,sans-serif;
+    background-color:#212121;
+}
+header {
+    background-color:#212121;
+    box-shadow: 0 -1px 2px #111111;
+    color:#fff;
+    display:block;
+    height:70px;
+    position:relative;
+    width:100%;
+    z-index:100;
+}
+header h2{
+    font-size:22px;
+    font-weight:normal;
+    left:50%;
+    margin-left:-400px;
+    padding:22px 0;
+    position:absolute;
+    width:540px;
+}
+header a.stuts,a.stuts:visited{
+    border:none;
+    text-decoration:none;
+    color:#fcfcfc;
+    font-size:14px;
+    left:50%;
+    line-height:31px;
+    margin:23px 0 0 110px;
+    position:absolute;
+    top:0;
+}
+header .stuts span {
+    font-size:22px;
+    font-weight:bold;
+    margin-left:5px;
+}
+.container {
+    height: 571px;
+    margin: 30px auto;
+    width: 957px;
+}
+
+
+body {
+  background: @beige;
+  color: black;
+}
+
+.wrapper {
+  height: 100%;
+  display: table;
+  width: 100%;
+  text-align: center;
+}
+
+.header {
+  display: table-row;
+  height: 0px;
+  background: @yellow;
+}
+
+.mainCon {
+  height: 100%;
+  display: table;
+  width: 100%;
+}
+
+.box {
+  display: table-cell;
+}
+
+.sidebar {
+  width: 250px;
+  background: @orange;
+}
+
+.footer {
+  display: table-row;
+  height:1px;
+  background: @green;
+  color: @beige;
+}
+
+/*====== Ignore section below ======*/
+
+@orange: #BD4932;
+@yellow: #FFD34E;
+@green: #105B63;
+@beige: #FFFAD5;
+
+
+/* Basic Style*/
+* { margin:0; padding:0;}
+html, body { height: 100%; }
+button { padding: 5px 10px;position:fixed;bottom: 50px;right:0px;left:0px;margin:auto; width: 200px; display: block; -webkit-appearance: none;background: @orange; outline: none;  border: 2px solid #DB9E36; color: @yellow; border-radius: 10px; box-shadow: 0 2px 3px rgba(0,0,0,0.5);cursor: pointer;}
+button:active {border-color: @beige; color:@beige;}

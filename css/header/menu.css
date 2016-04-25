@@ -1,0 +1,142 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	margin:0px;
+	padding:0px;
+}
+body {
+	background:#f4f4f4;
+}
+#main-container {
+	background:url(images/img-1.jpg) repeat scroll;
+	height:160px;
+	margin:0 auto;
+}
+header {
+	width:1000px;
+	header:160px;
+	margin:0 auto;
+}
+#logo {
+	height:100px;
+	width:170px;
+	padding:30px 0;
+	float:left;
+}
+#button {
+	float: left;
+	height: 72px;
+	margin: 19px 60px;
+	padding: 25px 10px;
+	width: 200px;
+}
+.button-style {
+	background: -moz-linear-gradient(center top, #f9c037, #f8a13b);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F9C037), to(#F8A13B));
+	width:194px;
+	height:44px;
+	float:left;
+	border-radius:19px;
+	-moz-border-radius:19px;
+	-webkit-border-radius:19px;
+	box-shadow: -1px 0 9px 4px #000000;
+}
+.button-style p {
+	color: #b05f0f;
+	font-size: 23px;
+	height: 25px;
+	margin: 6px 0;
+	text-align: center;
+	width: 194px;
+}
+#social-media {
+	width:160px;
+	height:122px;
+	float:right;
+	margin-top:22px;
+}
+#social-media ul {
+	margin:0px;
+}
+#social-media ul li {
+	list-style:none;
+	line-height:33px;
+}
+#social-media ul li p {
+	color:#fff;
+	float:right;
+}
+#main {
+	width:925px;
+	margin:0 auto;
+	height:100px;
+	padding-top:10px;
+}
+ul li {
+	background:#000;
+	list-style: none;
+	height: 44px;
+	float:left;
+	padding:10px 5px;
+}
+ul li a {
+	width: 144px;
+	height: 40px;
+	line-height: 53px;
+	border-bottom: 4px solid #636393;
+	padding:0px;
+	color: #fff;
+	font-size:18px;
+	font-weight:lighter;
+	text-align:center;
+	text-decoration: none;
+	display: block;
+ -webkit-transition: .2s all linear;
+ -moz-transition: .2s all linear;
+ -o-transition: .2s all linear;
+ transition: .2s all linear;
+}
+ li:nth-child(1) a {
+border-color: #636393;
+}
+li:nth-child(2) a {
+border-color: #B5222D;
+}
+li:nth-child(3) a {
+border-color: #D4953C;
+}
+li:nth-child(4) a {
+border-color: #609491;
+}
+li:nth-child(5) a {
+border-color: #87A248;
+}
+li:nth-child(6) a {
+border-color: #636393;
+}
+
+ li:nth-child(1) a:hover {
+border-bottom: 35px solid #636393;
+ height: 9px;
+}
+li:nth-child(2) a:hover {
+border-bottom: 35px solid #B5222D;
+ height: 9px;
+}
+li:nth-child(3) a:hover {
+border-bottom: 35px solid #D4953C;
+ height: 9px;
+}
+li:nth-child(4) a:hover {
+border-bottom: 35px solid #609491;
+ height: 9px;
+}
+li:nth-child(5) a:hover {
+border-bottom: 35px solid #87A248;
+ height: 9px;
+}
+li:nth-child(6) a:hover {
+border-bottom: 35px solid #636393;
+ height: 9px;
+}

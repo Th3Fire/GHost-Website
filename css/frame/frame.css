@@ -1,0 +1,22 @@
+.frame3{
+border-color:#E9E7E4 #4785F8;
+border-image:none;
+border-radius: 50px 0 50px 0;
+-moz-border-radius:50px 0 50px 0;
+-webkit-border-radius:50px 0 50px 0;
+border-style:solid;
+border-width:20px;
+height:100px;
+width:100px;
+}
+.frame4{
+border-color:#66ccff #000000;
+border-image:none;
+border-radius: 0px 1px 0px 1px;
+-moz-border-radius:0px 1px 0px 1px;
+-webkit-border-radius:0px 1px 0px 1px;
+border-style:solid;
+border-width:2px;
+height:100px;
+width:100px;
+}

@@ -1,0 +1,48 @@
+
+
+
+.bar {
+    border-bottom: 3px dashed #808080;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.login {
+    text-align: center;
+    font-size: 14pt;
+    font-weight: bold;
+    width: 170px;
+    color: #000;
+}
+
+.cell-TB {
+    border-right:1px solid #FFFFFF;
+    border-bottom:1px solid #FFFFFF;
+    text-align:center;
+    font-weight:bold;
+    color:#FFF;
+}
+
+.cell-Time {
+    background-color:#FFFFFF;
+    height:50px;
+}
+
+.cell-Day {
+    background-color:#808080;
+    font-weight:bold;
+    color:#FFF;
+}
+
+.cell-Course {
+    text-align:center;
+    background-color:#C0D0FF;
+    color:#000;
+    font-weight:bold;
+}
+
+.cell-Bg {
+    background-color:#F0F0F0;
+    color:#000;
+    height:50px;
+}
