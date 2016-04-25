@@ -83,6 +83,7 @@ body {
 
 .footer {
   display: table-row;
+ 
   height:1px;
   background: @green;
   color: @beige;

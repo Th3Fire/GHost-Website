@@ -740,7 +740,8 @@ while ($row = $resAllHeroesPlay->fetch_array(MYSQL_BOTH))
 echo "</table>"
 ?>
 
-<br>
+
+
 
 
 </div>
@@ -750,13 +751,15 @@ echo "</table>"
 
 <div class="box sidebar">Right-sidebar</div>
 </div>
-<div class="footer"></div>
+<div class="footer">
+	<img src="images/bg03_2.png" alt="Smiley face" align="middle" width="100%" height="100%">
+</div>
+</div>
+
 </div>
 <br>
-<br>
-<br>
-<br>
-<br>
+
+
 <?php include 'footer.php'; ?>
 
 

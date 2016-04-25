@@ -759,6 +759,38 @@ echo "</table>"
 ?>
 
 
+<?php 
+
+	$sql = "SELECT name, COUNT(dotaplayers.id)\n"
+    . "FROM gameplayers\n"
+    . "LEFT JOIN games ON games.id = gameplayers.gameid\n"
+    . "LEFT JOIN dotaplayers ON dotaplayers.gameid = games.id\n"
+    . "AND dotaplayers.colour = gameplayers.colour\n"
+    . "AND NOT (\n"
+    . "hero <=> \'\'\n"
+    . ")\n"
+    . "AND NOT (\n"
+    . "hero <=> NULL\n"
+    . ")\n"
+    . "GROUP BY name\n"
+    . "ORDER BY COUNT( dotaplayers.id ) DESC \n"
+    . "LIMIT 0 , 1";
+
+	$result = mysqli_query($con,$sql);
+
+	
+
+	while ($row = mysql_fetch_assoc($result)) 
+		{
+			
+		}
+
+
+
+?>
+
+
+
 </div>
 
 
@@ -767,6 +799,7 @@ echo "</table>"
 <div class="box sidebar">Right-sidebar</div>
 </div>
 <div class="footer"></div>
+<img src="images/bg03_2.png" alt="Smiley face" align="middle" width="100%" height="100%">
 </div>
 <br>
 <br>
