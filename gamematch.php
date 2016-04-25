@@ -22,7 +22,13 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 	
 	<title>GHost++ Welcome - Stats Player</title>
+
+
 	<style>
+		body 
+		{ color:#EEE; font:13px Tahoma, Arial, sans-serif; background:#000000 url(images/bg01.jpg) center top no-repeat;
+		}
+
 		.topcenter {
 			text-align: center;
 			border-style: none;

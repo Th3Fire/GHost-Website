@@ -32,9 +32,9 @@ if(!isset($_SESSION['UserID']))
 	<center>
 	<form name="formlogin" method="post" action="checklogin.php" >
 	Username : 
-	<input name="txtusername" id="txtusername" required="*"></input>
+	<input type="text" name="txtUsername" id="txtUsername" required="*"></input>
 	Password : 
-	<input name="txtpassword" id="txtpassword" required="*"></input>
+	<input type="password" name="txtPassword" id="txtPassword" required="*"></input>
 
 	<button name="submit" id="submit">Login</button>
 	</form>
