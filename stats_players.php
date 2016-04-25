@@ -34,6 +34,12 @@
 		});
 	</script>
 	
+	<style>
+
+		body { color:#EEE; font:13px Tahoma, Arial, sans-serif; background:#000000 url(images/bg01.jpg) center top no-repeat;}
+
+		
+	</style>
 		
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" > 
@@ -69,9 +75,18 @@
 	$resImgProfile = mysqli_query($con,$sqlImg);
 
 	if ($resNamePlayer->num_rows > 0)
- {}else
+ {
+ 	$namePro = "<font face='Candal' size='4'><b>".$_GET['search']."</b></font>";
+
+
+ }else
 {
-	$name = "Not found player name";
+	if($_GET['search'] == "")
+	{
+		$namePro = "<div class=blink><font face='Candal' size='4' style='color:#ff0000'><b>Please input player name !!!</b></font></div>";
+
+	}else
+	$namePro = "<div class=blink><font face='Candal' size='4' style='color:#ff0000'><b>Not found !!! <br>".$_GET['search']." name</b></font></div>";
 
 }
 
@@ -138,10 +153,10 @@ if ($resImgProfile->num_rows > 0) {
 		<!-- end menu -->
 		<!-- end header -->
 		<div class="mainCon">
-			<div class="box sidebar">Left-sidebar</div>
+			<div class="box sidebar"><!--Left-sidebar --></div>
 
 			<div class="box"><!-- Main Content -->
-
+				<div class="animated swing">
 				<div class="myDiv">   	
 					<div class="topleft">
 					<?php 
@@ -151,7 +166,7 @@ if ($resImgProfile->num_rows > 0) {
 						echo 
 							'<section style="margin: 10px;">
 							<fieldset style="min-height:100px;">
-								<legend> <font face="Candal" size="4"><b>'.$name.'</b></font> </legend>';
+								<legend> '.$namePro.' </legend>';
 							
 								?>
 <label> <br/>
@@ -244,6 +259,7 @@ if ($resImgProfile->num_rows > 0) {
 </fieldset>
 
 </section>
+</div>
 </div>
 </div>
 <!--
@@ -780,10 +796,6 @@ echo "</table>"
 
 	
 
-	while ($row = mysql_fetch_assoc($result)) 
-		{
-			
-		}
 
 
 
@@ -791,15 +803,18 @@ echo "</table>"
 
 
 
+
 </div>
-
-
 </div><!-- end Main Content -->
 
-<div class="box sidebar">Right-sidebar</div>
+<div class="box sidebar"><!-- Right-sidebar --></div>
 </div>
+
+
 <div class="footer"></div>
 <img src="images/bg03_2.png" alt="Smiley face" align="middle" width="100%" height="100%">
+</div>
+
 </div>
 <br>
 <br>

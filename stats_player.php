@@ -130,10 +130,10 @@ if ($resImgProfile->num_rows > 0) {
 		<!-- end menu -->
 		<!-- end header -->
 		<div class="mainCon">
-			<div class="box sidebar">Left-sidebar</div>
+			<div class="box sidebar"><!-- For Left-sidebar --></div>
 
 			<div class="box"><!-- Main Content -->
-
+				<div class="animated swing">
 				<div class="myDiv">   	
 					<div class="topleft">
 						<section style="margin: 10px;">
@@ -228,6 +228,7 @@ if ($resImgProfile->num_rows > 0) {
 </section>
 </div>
 </div>
+</div><!-- end animated -->
 <!--
 <table style=width:100% border="0" class="topcenter">
 <tr><th width='50%' class="topcenter" colspan="2"><div class="topright">Profile <?php echo $_SESSION['UserID']; ?></div></th><th width='50%' class="topcenter"></th></tr>
@@ -749,7 +750,7 @@ echo "</table>"
 
 </div><!-- end Main Content -->
 
-<div class="box sidebar">Right-sidebar</div>
+<div class="box sidebar"><!--Right-sidebar --></div>
 </div>
 <div class="footer">
 	<img src="images/bg03_2.png" alt="Smiley face" align="middle" width="100%" height="100%">

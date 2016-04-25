@@ -132,11 +132,11 @@ border-radius: 0.7em;
 	position: relative;
 }
 .price-value.two{
-	background:#2b2b33;
+	background:#ccffcc;
 	border-bottom:2px solid#fd6e70;
 }
 .price-value.three {
-	background: #04dbdd;
+	background: #2b2b33;
 	border-bottom:2px solid#028f87;
 }
 .price-value ul,.pricing-grid1 ul,.pricing-grid2 ul,.pricing-grid3 ul{

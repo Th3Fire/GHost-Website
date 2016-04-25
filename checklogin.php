@@ -3,8 +3,8 @@
 
 	require_once("connect.php");
 	
-	$strUsername = mysqli_real_escape_string($con,$_POST['txtusername']);
-	$strPassword = mysqli_real_escape_string($con,$_POST['txtpassword']);
+	$strUsername = mysqli_real_escape_string($con,$_POST['txtUsername']);
+	$strPassword = mysqli_real_escape_string($con,$_POST['txtPassword']);
 
 	$strSQL = "SELECT * FROM member WHERE Username = '".$strUsername."' 
 	and Password = '".$strPassword."'";
