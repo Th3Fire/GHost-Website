@@ -85,13 +85,16 @@
 
 ///Top 3 Heroes
 	$sql6 = "SELECT games.id,hero,winner,count(hero), SUM(kills), SUM(deaths), SUM(creepkills), SUM(creepdenies), SUM(assists), SUM(neutralkills), SUM(towerkills), SUM(raxkills), SUM(courierkills) FROM gameplayers LEFT JOIN games ON games.id=gameplayers.gameid LEFT JOIN dotaplayers ON dotaplayers.gameid=games.id AND dotaplayers.colour=gameplayers.colour LEFT JOIN dotagames ON games.id=dotagames.gameid WHERE name='".$name."' AND NOT(hero <=> '') AND NOT(hero <=> NULL) group by hero order by count(hero) desc limit 0,3";
-///All Heroes ever play
+///Top 3 Heroes ever play
 	$sql7 = "SELECT games.id,hero,winner,count(hero), SUM(kills), SUM(deaths), SUM(creepkills), SUM(creepdenies), SUM(assists), SUM(neutralkills), SUM(towerkills), SUM(raxkills), SUM(courierkills) FROM gameplayers LEFT JOIN games ON games.id=gameplayers.gameid LEFT JOIN dotaplayers ON dotaplayers.gameid=games.id AND dotaplayers.colour=gameplayers.colour LEFT JOIN dotagames ON games.id=dotagames.gameid WHERE name='".$name."' AND NOT(hero <=> '') AND NOT(hero <=> NULL) group by hero order by count(hero) desc ";
 
 
 	$sqlxx = "SELECT games.id,hero,winner,count(hero), SUM(kills), SUM(deaths), SUM(creepkills), SUM(creepdenies), SUM(assists), SUM(neutralkills), SUM(towerkills), SUM(raxkills), SUM(courierkills) FROM gameplayers LEFT JOIN games ON games.id=gameplayers.gameid LEFT JOIN dotaplayers ON dotaplayers.gameid=games.id AND dotaplayers.colour=gameplayers.colour LEFT JOIN dotagames ON games.id=dotagames.gameid WHERE name='".$name."' group by hero order by count(hero) desc limit 0,3";
 /// Last Play
 	$sqlDateTime = "SELECT datetime FROM gameplayers LEFT JOIN games ON games.id=gameplayers.gameid LEFT JOIN dotaplayers ON dotaplayers.gameid=games.id AND dotaplayers.colour=gameplayers.colour LEFT JOIN dotagames ON games.id=dotagames.gameid WHERE name='".$name."' AND NOT(hero <=> '') AND NOT(hero <=> NULL) order by dotagames.gameid desc limit 0,1";
+
+/// All heroes ever player
+	$sqlAllheroesEverPlay = "SELECT * FROM gameplayers LEFT JOIN games ON games.id=gameplayers.gameid LEFT JOIN dotaplayers ON dotaplayers.gameid=games.id AND dotaplayers.colour=gameplayers.colour LEFT JOIN dotagames ON games.id=dotagames.gameid WHERE name='".$name."' AND NOT(hero <=> '') AND NOT(hero <=> NULL) order by dotagames.gameid desc";
 
 /// image profile
 
@@ -116,6 +119,7 @@ if ($resImgProfile->num_rows > 0) {
 	$result6 = mysqli_query($con,$sql6);
 	$result7 = mysqli_query($con,$sql7);
 	$result8 = mysqli_query($con,$sqlDateTime);
+	$resAllHeroesPlay = mysqli_query($con,$sqlAllheroesEverPlay);
 	?>
 
 	<div class="wrapper">
@@ -536,7 +540,7 @@ echo "</table>"
 
 
 
-<!--  All heroes ever play  -->
+<!--  Top  heroes ever play  -->
 
 <?php
 echo "<div class='topleft'><font style='color: white' size='5' face='Itim'>ฮีโร่ (Heroes) ที่เคยเล่น</font></div>";
@@ -634,6 +638,109 @@ echo "</tr> ";
 echo "</table>"
 
 ?>
+<br>
+
+<!--  All ever Heroes play  -->
+
+<?php
+
+echo "<div class='topleft'><font style='color: white' size='5' face='Itim'>เกม (Matches) ที่เคยเล่นทั้งหมด</font></div>";
+echo "<table style=width:100% >";
+echo "<tr><th class='text-center'>ฮีโร่</th><th class='text-center'>ผล</th><th class='text-center'>เวลาการเล่น</th><th class='text-center'>K/D/A ฮีโร่</th><th class='text-center'>K/D/N ครีพ</th></tr>";
+
+echo "<col width='23%'/>";
+echo "<col width='12%'/>";
+echo "<col width='15%'/>";
+echo "<col width='25%'/>";
+echo "<col width='25%'/>";
+
+
+while ($row = $resAllHeroesPlay->fetch_array(MYSQL_BOTH)) 
+{
+
+
+	$lastHeroesPlay = $row['hero'];
+	$time = $row['datetime'];
+
+//////////////////////Find name of hero ////////////////////////////////////////////
+
+	$sqlHeroName = "SELECT description from heroes where heroid = '".$lastHeroesPlay."'";
+	$resHeroName = mysqli_query($con,$sqlHeroName);
+
+
+	while ($heroName = $resHeroName->fetch_array(MYSQL_BOTH)) 
+
+	{
+		$_heroName = $heroName['description'];
+	}
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+	$upperNameHeroes = strtoupper($lastHeroesPlay);
+	if($_heroName != NULL){
+		//echo "<img src='images/heroes/UBAL.gif' alt='Smiley face' height='42' width='42>";
+		echo "<td>";
+		
+		//echo '<img src="images/heroes/E01A.gif" alt="Smiley face" height="42" width="42">';
+		
+		//echo "<img src='images/heroes/".$upperNameHeroes.".gif'>";
+		echo '<div  style="overflow:hidden;width:100%">
+		<div id="inner" style="overflow:hidden;width: 100%;height:35px">
+
+			<div style="float:left;width:20%; padding:2px 0;">
+
+				<img src=images/heroes/'.$upperNameHeroes.'.gif "title='.$_heroName.' alt='.$_heroName.' width="30" height="30" >
+			</div>
+
+			
+			<div style="float:left;width:80%;" name="game_id"> <b>'.$_heroName.'</b><br><a href="gamematch.php?id='.$row['gameid'].'"><i>เกม ID:'.$row['gameid'].'</i></a></div>
+			
+		</div>  
+
+	</div>';
+	echo "</td>";	
+	$winner;
+	if($row['winner'] == 1)
+	{
+   						//<img src='images/winner5.png' alt='winner' height='42' width='42'>
+		$winner = "<font style='color:#009900'><b>ชนะ</b></font><br>";
+	} 
+	else if($row['winner'] == 2)
+	{
+   					 	//<img src='images/lose.png' alt='winner' height='35' width='35'><br>
+		$winner = "<font style='color:red'><b>แพ้</b></font><br>";
+	}else if($row['winner'] == 0)
+	{
+		$winner = "<div class='blink'><font style='color:#3366ff'><b>LEAVE !!!</b></font></div>";
+	}
+
+
+	echo "<td class='text-center'>".$winner." </div>";
+
+   					//echo "<label id='time'> test </label>";
+
+	echo '<abbr title="'.$time.'" ></abbr>';
+	echo '<span data-livestamp="'.$time.'"></span><br>';
+
+
+
+
+	echo "</td>";
+	echo "<td class='text-center'>".$row['min']." นาที ".$row['sec']." วินาที</td>";
+	echo "<td>&nbsp&nbsp&nbspKills: ".$row['kills']." Deaths:".$row['deaths']." Assists: ".$row['assists']."</td>";
+
+	echo "<td>&nbsp&nbsp&nbspKills: ".$row['creepkills']." Denies: ".$row['creepdenies']." 
+	Neutral: ".$row['neutralkills']."</td>";
+	echo "</tr>";
+
+}
+}
+
+echo "</table>"
+?>
+
+<br>
 
 
 </div>
