@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="shortcut icon" href="favicon2.ico" type="image/x-icon" />
 	<link rel="stylesheet" href="css/layout.css">
 	<link rel="stylesheet" href="css/mycss/mystyle.css">
 	<link rel="stylesheet" href="css/mycss/mystyle2.css">
@@ -12,7 +13,12 @@
 	<link rel="stylesheet" href="css/footer/footer-basic-centered.css">
 	<link rel="stylesheet" href="css/frame/frame.css">
 	<link rel="stylesheet" href="css/animate.css">
-	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+
+		<link href="css/upload/style.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.form.js"></script>
+
+
 	<script type="text/javascript" src="js/moment-2.13.0.min.js"></script>
 	<script type="text/javascript" src="js/livestamp.js"></script>
 
@@ -37,6 +43,41 @@
 
 		
 	</style>
+
+	<script>
+		$(document).on('change', '#image_upload_file', function () {
+			var progressBar = $('.progressBar'), bar = $('.progressBar .bar'), percent = $('.progressBar .percent');
+
+			$('#image_upload_form').ajaxForm({
+				beforeSend: function() {
+					progressBar.fadeIn();
+					var percentVal = '0%';
+					bar.width(percentVal)
+					percent.html(percentVal);
+				},
+				uploadProgress: function(event, position, total, percentComplete) {
+					var percentVal = percentComplete + '%';
+					bar.width(percentVal)
+					percent.html(percentVal);
+				},
+				success: function(html, statusText, xhr, $form) {		
+					obj = $.parseJSON(html);	
+					if(obj.status){		
+						var percentVal = '100%';
+						bar.width(percentVal)
+						percent.html(percentVal);
+						$("#imgArea>img").prop('src',obj.image_medium);			
+					}else{
+						alert(obj.error);
+					}
+				},
+				complete: function(xhr) {
+					progressBar.fadeOut();			
+				}	
+			}).submit();		
+
+		});
+	</script>
 
 </head>
 <body>
@@ -64,6 +105,7 @@
 	<?php
 	session_start();
 	require_once("connect.php");
+
 
 	/// Top play
 	$sqlTopPlay = "SELECT name, COUNT(dotaplayers.id)
@@ -198,10 +240,7 @@
 
 
 
-
-
 	<div class="wrapper">
-
 		<!-- menu -->
 		<?php include 'header.php'; ?>
 
@@ -212,25 +251,23 @@
 
 			<div class="box"><!-- Main Content -->
 
+				
+				<h1><font size="5">อันดับสูงสุด (Top Ranks)</font></h1>
+				<img src="images/separator_great.jpg">
+				
 
-
-
+				<div class="maindiv" style="min-height: 580px; background-color: #000; box-shadow: #000 0px 0px 20px; margin-bottom: 30px; 
+				background-image:url(.../../images/bg_toprank4.png); background-position: 0 0px;  border: #212121 solid 1px; background-size: 860px 750px; background-repeat: no-repeat;">
 
 				<div class="myDivsearch">
-					
-
 					<section class="webdesigntuts-workshop">
 						<form action="stats_players.php" method="get">		    
 							<input type="search" placeholder="ค้นหาชื่อผู้เล่น..." name="search" id="search" required>		    	
 							<button>Search</button>
 						</form>
 					</section>
-
-
 				</div>
-
 				<div class="myConIndex">  
-
 
 					<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 
@@ -239,19 +276,63 @@
 							<div class="price-head">
 
 							</div>
-							<br><br><br><br>
-							<font size="6" color="yellow">อันดับผู้เล่น</font>
+							<br><br>
+							
 
 							<div class="pricing-grids">
 								<div class="animated rubberBand">
 									<div class="pricing-grid1">
 										<div class="price-value">
 											<h2><a href="#">
+
+
+												<div id="imgContainer">
+
 												<?php
-												echo "<img class='frame4' src='imgProfile/".$pathImg."'". " alt=".$name." width='30px' height='30px'> ";
-												?>
+
+	//////////////   check user
+												$checkNoImg = false;
+												$sqlImg =  "SELECT img from member WHERE Username='".$name."'";
+												$resImgProfile = mysqli_query($con,$sqlImg);
+
+												if ($resImgProfile->num_rows > 0) {
+													while ($imgprofile = $resImgProfile->fetch_array(MYSQL_BOTH)) 
+													{
+														if($imgprofile['img'] == 0)
+														{
+															$checkImg = false;
+
+														}else
+														{
+															$checkImg = true;
+														}
+
+													}
+												}else
+												{
+													$checkNoImg = true;
+													echo '<div id="imgArea"><img src="img/default.jpg">';
+													echo "No image";
+
+												}
+
+
+
+												//echo "<img class='frame4' src='imgProfile/".$pathImg."'". " alt=".$name." width='30px' height='30px'> ";
+												if($checkImg == false && $checkNoImg == false){
+														echo '<div id="imgArea"><img src="img/default.jpg">';
+													}else if($checkImg == true && $checkNoImg == false){
+														echo '<div id="imgArea"><img src="img/uploades/medium/'.$name.'.jpg" >';
+													}
+													
+
+													?> 
+
+
+											</div>
+
 											</a></h2>
-											<h5><span><?php echo $name; ?></span><lable><br>ทั้งหมด: <?php echo $totalplay; ?> เกม</lable></h5>
+											<h5><span><?php echo $name; ?></span><lable><br>เล่นทั้งหมด: <?php echo $totalplay; ?> เกม</lable></h5>
 											<div class="sale-box">
 												<span class="on_sale title_shop">"จำนวนเกม" สูงสุด</span>
 											</div>
@@ -268,10 +349,51 @@
 									<div class="pricing-grid2">
 										<div class="price-value two">
 											<h3><a href="#">
+												
+												<div id="imgContainer">
+
 												<?php
 
-												echo "<img class='frame4' src='imgProfile/".$pathImgTopWin."'". " alt=".$nameTOPWin." width='30px' height='30px'> ";
-												?>
+	//////////////   check user
+												$checkNoImg = false;
+												$sqlImg =  "SELECT img from member WHERE Username='".$name."'";
+												$resImgProfile = mysqli_query($con,$sqlImg);
+
+												if ($resImgProfile->num_rows > 0) {
+													while ($imgprofile = $resImgProfile->fetch_array(MYSQL_BOTH)) 
+													{
+														if($imgprofile['img'] == 0)
+														{
+															$checkImg = false;
+
+														}else
+														{
+															$checkImg = true;
+														}
+
+													}
+												}else
+												{
+													$checkNoImg = true;
+													echo '<div id="imgArea"><img src="img/default.jpg">';
+													echo "No image";
+
+												}
+
+
+
+												//echo "<img class='frame4' src='imgProfile/".$pathImg."'". " alt=".$name." width='30px' height='30px'> ";
+												if($checkImg == false && $checkNoImg == false){
+														echo '<div id="imgArea"><img src="img/default.jpg">';
+													}else if($checkImg == true && $checkNoImg == false){
+														echo '<div id="imgArea"><img src="img/uploades/medium/'.$nameTOPWin.'.jpg" >';
+													}
+													
+
+													?> 
+											</div>
+
+
 											</a></h3>
 											<h5><span><?php echo $nameTOPWin; ?></span><lable><br>ชนะทั้งหมด: <?php echo $totalWin; ?> เกม</lable></h5>
 											<div class="sale-box two">
@@ -291,9 +413,50 @@
 									<div class="pricing-grid3">
 										<div class="price-value three">
 											<h4><a href="#">
+
+												<div id="imgContainer">
+
 												<?php
-												echo "<img class='frame4' src='imgProfile/".$pathImgTLP."'". " alt=".$nameTLP." width='30px' height='30px'> ";
-												?>
+
+	//////////////   check user
+												$checkNoImg = false;
+												$sqlImg =  "SELECT img from member WHERE Username='".$name."'";
+												$resImgProfile = mysqli_query($con,$sqlImg);
+
+												if ($resImgProfile->num_rows > 0) {
+													while ($imgprofile = $resImgProfile->fetch_array(MYSQL_BOTH)) 
+													{
+														if($imgprofile['img'] == 0)
+														{
+															$checkImg = false;
+
+														}else
+														{
+															$checkImg = true;
+														}
+
+													}
+												}else
+												{
+													$checkNoImg = true;
+													echo '<div id="imgArea"><img src="img/default.jpg">';
+													echo "No image";
+
+												}
+
+
+
+												//echo "<img class='frame4' src='imgProfile/".$pathImg."'". " alt=".$name." width='30px' height='30px'> ";
+												if($checkImg == false && $checkNoImg == false){
+														echo '<div id="imgArea"><img src="img/default.jpg">';
+													}else if($checkImg == true && $checkNoImg == false){
+														echo '<div id="imgArea"><img src="img/uploades/medium/'.$nameTLP.'.jpg" >';
+													}
+													
+
+													?> 
+											</div>
+
 											</a></h4>
 											<font style="color: black;"><h5><span><?php echo $nameTLP; ?></span><lable><br><?php echo $totalMin." นาที ".$totalSec." วินาที"; ?></lable></h5></font>
 											<div class="sale-box three">
@@ -327,18 +490,19 @@
 				</div>
 
 
+			</div><!-- end maindiv -->
 
+		</div><!-- end Main Content -->
 
-			</div><!-- end Main Content -->
+		<div class="box sidebar"><!-- Right-sidebar --></div>
+	</div> <!-- end Maincon -->
+<div class="maindiv">
+	<div class="footer"><img src="images/bg03_2.png" alt="Smiley face" align="middle" width="100%" height="100%"></div>
+</div>
 
-			<div class="box sidebar"><!-- Right-sidebar --></div>
-		</div>
-		<div class="footer">
-			<img src="images/bg03_2.png" alt="Smiley face" align="middle" width="100%" height="100%">
-		</div>
-	</div>
 
 </div>
+
 
 
 

@@ -245,13 +245,13 @@ box-shadow: 3px -4px 13px 3px rgba(0,0,0,0.75);
 .cart1,.cart2,.cart3{
 	padding: 2.7em 0em 2.7em;
 	display: block;
-	border-bottom: 2px solid#ffd500;
+	/*border-bottom: 2px solid#ffd500;*/
 }
 .cart2{
-border-bottom: 2px solid#f96d70;
+/* border-bottom: 2px solid#f96d70; */
 }
 .cart3{
-border-bottom: 2px solid#04dbdd;
+/* border-bottom: 2px solid#04dbdd; */
 }
 .cart1 a,.cart2 a,.cart3 a{
 	color: #FFF;

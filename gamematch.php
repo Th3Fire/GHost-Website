@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="shortcut icon" href="favicon2.ico" type="image/x-icon" />
 	<link rel="stylesheet" href="css/layout.css">
 	<link rel="stylesheet" href="css/mycss/mystyle.css">
+	<link rel="stylesheet" href="css/mycss/mystyle2.css">
 	<link rel="stylesheet" href="css/header/menu.css">
 	<link rel="stylesheet" href="css/Mytablegamematch.css">
 	<link rel="stylesheet" href="css/footer/footer-basic-centered.css">
@@ -21,7 +23,7 @@
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 	
-	<title>GHost++ Welcome - Stats Player</title>
+	<title>GHost++ - Matches game detial</title>
 
 
 	<style>
@@ -72,14 +74,7 @@
 	session_start();
 	require_once("connect.php");
 
-	if(!isset($_SESSION['UserID']))
-	{
-		header ("Location: login.php");
-		exit();
-	}else if($_SESSION['UserID'] == ""){
-		header ("Location: login.php");
-		exit();
-	}
+	
 
 	$name = $_SESSION['UserID'];
 	
@@ -88,19 +83,37 @@
 
 <div class="wrapper">
 
-	<!-- menu -->
-	<?php include 'header.php'; ?>
-
-	<!-- end menu -->
-	<!-- end header -->
-	<div class="mainCon">
-		<div class="box sidebar">Left-sidebar</div>
-
-		<div class="box"><!-- Main Content -->
+		<!-- menu -->
+		<?php include 'header.php'; ?>
 
 
+		<!-- end menu -->
+		<!-- end header -->
+		<div class="mainCon">
+			<div class="box sidebar"><!-- For Left-sidebar --></div>
 
-<?php 
+			<div class="box"><!-- Box Content -->
+
+				
+				<h1><font size="5">รายละเอียดเกม (Game Detail)</font></h1>
+				<img src="images/separator_great.jpg">
+
+
+				<div class="maindiv" style="min-height: 636px; background-color: #000; box-shadow: #000 0px 0px 20px; margin-bottom: 30px; background-image:url(.../../images/bg_content.jpg); background-position: 0 70px; background-repeat:no-repeat; border: #212121 solid 1px; background-size: 860px 566px; background-repeat: no-repeat;">
+					<div class="animated swing">
+
+						
+
+
+
+					</div><!-- end animated -->
+
+
+					<br>
+
+					<div class="tbDiv" >
+
+					<?php 
 
 if($_GET["id"] != "" || $_GET["id"] != NULL){
 $sql = "SELECT * \n"
@@ -116,7 +129,7 @@ $res = mysqli_query($con,$sql);
 	if ($res->num_rows > 0) {
 
 
-	echo "<div class='topleft'><font style='color: white' size='5' face='Itim'>รายละเอียดเกม(Detail) Game ID: ".$_GET["id"]."<br><br></font></div>";
+	echo "<div class='topcenter'><font style='color: white' size='5' face='Itim'>Game ID:#".$_GET["id"]."<br><br></font></div>";
 	echo "<table style=width:100% >";
 	echo "
 	<tr><th class='text-center'>ผู้เล่น<br>(Player)</th>
@@ -129,13 +142,13 @@ $res = mysqli_query($con,$sql);
 	<th class='text-center'>ผู้ชนะ<br>(Winner)</th></tr>";
 
 	echo "<col width='11%'/>";
-	echo "<col width='19%'/>";
+	echo "<col width='22%'/>";
 	echo "<col width='12%'/>";
 	echo "<col width='12%'/>";
 	echo "<col width='12%'/>";
 	echo "<col width='14%'/>";
-	echo "<col width='12%'/>";
-	echo "<col width='18%'/>";
+	echo "<col width='10%'/>";
+	echo "<col width='15%'/>";
 
 while ($row = $res->fetch_array(MYSQL_BOTH)) 
 		{
@@ -239,23 +252,23 @@ while ($row = $res->fetch_array(MYSQL_BOTH))
 	echo "Not Found Game ID Please enter Game ID";
 ?>
 
+</div><!-- end tbDiv -->
 
 
 
-</div><!-- end Main Content -->
+</div><!-- end maindiv -->
+</div><!--  end Box Content -->
+<div class="box sidebar"><!--Right-sidebar --></div> <!-- end right sidebar -->
+</div><!-- end mainCon-->
 
-<div class="box sidebar">Right-sidebar</div>
-
-
+<div class="maindiv">
+<img src="images/bg03_2.png" alt="Smiley face" align="middle" width="100%" height="100%">
 
 </div>
-<div class="footer"></div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
+</div><!-- End wrapper -->
+
+
 
 
 

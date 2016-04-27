@@ -49,7 +49,7 @@ header .stuts span {
 
 
 body {
-  background: @beige;
+ /* background: @beige; */
   color: black;
 }
 
@@ -63,7 +63,7 @@ body {
 .header {
   display: table-row;
   height: 0px;
-  background: @yellow;
+ /* background: @yellow; */
 }
 
 .mainCon {
@@ -78,15 +78,15 @@ body {
 
 .sidebar {
   width: 250px;
-  background: @orange;
+  /*background: @orange; */
 }
 
 .footer {
   display: table-row;
  
   height:1px;
-  background: @green;
-  color: @beige;
+ /* background: @green;
+  color: @beige; */
 }
 
 /*====== Ignore section below ======*/

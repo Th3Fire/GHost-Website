@@ -34,17 +34,38 @@
 
 		fieldset {
 			font-family: sans-serif;
-			border: 5px solid #1F497D;
-			background: #2A2B29;
+			
+			background-image: url("../../images/bg_pro.jpg");
+			
 			border-radius: 5px;
 			padding: 10px;
 			width: 270px;
 			text-align: center;
+
+			border-width: 0px 12px 0px 12px;
+			border-style: double;
+			border-color: a6a6a6;
+			border-radius:40px 40px 60px 60px;
+			-moz-border-radius:40px 40px 60px 60px;
+			-webkit-border-radius:40px 40px 60px 60px;
 		}
+		div.maindiv {
+			margin-left: auto;
+			margin-right: auto;
+			width: 855px;
+		}
+
 		div.myDiv {
 			margin-left: auto;
 			margin-right: auto;
 			width: 320px;
+		}
+
+
+		div.mydivTab {
+			margin-left: auto;
+			margin-right: auto;
+			width: 800px;
 		}
 
 		div.myConIndex {
@@ -61,14 +82,32 @@
 		
 
 		}
+		div.headDiv {
+			
+			margin-left: auto;
+			margin-right: auto;
+			width: 400px;
+		
+
+		}
 		div.tbDiv {
 			margin-left: auto;
 			margin-right: auto;
-			width: 870px;
+			width: 850px;
+		}
+
+		div.tabstyle {
+			margin-left: auto;
+			margin-right: auto;
+			width: 850px;
+		}
+		div.footerstyle {
+			
+			width: 850px;
 		}
 
 		fieldset legend {
-			background: #1F497D;
+			background: #000000;
 			color: #fff;
 			padding: 5px 10px ;
 			font-size: 20px;
@@ -113,6 +152,14 @@
 		}
 		.onlinkcolor:hover {
 			color: #C41457;
+			text-decoration: none;
+		}
+		.onlinkcolor2:hover {
+			color: #ccff33;
+			text-decoration: none;
+		}
+		.onlinkcolor3:hover {
+			color: #ffccff;
 			text-decoration: none;
 		}
 
