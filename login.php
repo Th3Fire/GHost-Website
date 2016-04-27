@@ -1,51 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="css/reset.css">
-
-    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
-<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-
-        <link rel="stylesheet" href="css/style.css">
-	<title>GHost++</title>
+	<title></title>
+	<link rel="stylesheet" href="css/mycss/mystyle.css">
 </head>
 <body>
+
 <?php
 
 session_start();
 require_once("connect.php");
 
-//if(!isset($_SESSION['UserID']))
-//{
-//header ("Location: login.php");
-//exit();
-//}
-if(!isset($_SESSION['UserID']))
-{
-
-}else{header("Lacation: login.php");}
-
-?>
-
-<div>
-	
-	<center>
+	echo '
 	<form name="formlogin" method="post" action="checklogin.php" >
 	Username : 
 	<input type="text" name="txtUsername" id="txtUsername" required="*"></input>
 	Password : 
 	<input type="password" name="txtPassword" id="txtPassword" required="*"></input>
-
-	<button name="submit" id="submit">Login</button>
+	<input type="submit" id="submit" value="Login" class="myButton"></input>
+	
 	</form>
-	</center>
-</div>
-
+	';
+?>
 
 </body>
-<script>
-	
-
-
-</script>
 </html>
+
